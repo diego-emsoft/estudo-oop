@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{779342A7-AD40-492B-B9C8-D3EBAFFBC954}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Aula-01\aula01.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Aula-02\aula02.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Aula-03\aula03.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="aula01">
+        <MSBuild Projects="Aula-01\aula01.dproj"/>
+    </Target>
+    <Target Name="aula01:Clean">
+        <MSBuild Projects="Aula-01\aula01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="aula01:Make">
+        <MSBuild Projects="Aula-01\aula01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="aula02">
+        <MSBuild Projects="Aula-02\aula02.dproj"/>
+    </Target>
+    <Target Name="aula02:Clean">
+        <MSBuild Projects="Aula-02\aula02.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="aula02:Make">
+        <MSBuild Projects="Aula-02\aula02.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="aula03">
+        <MSBuild Projects="Aula-03\aula03.dproj"/>
+    </Target>
+    <Target Name="aula03:Clean">
+        <MSBuild Projects="Aula-03\aula03.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="aula03:Make">
+        <MSBuild Projects="Aula-03\aula03.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="aula01;aula02;aula03"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="aula01:Clean;aula02:Clean;aula03:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="aula01:Make;aula02:Make;aula03:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

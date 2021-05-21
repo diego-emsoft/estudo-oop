@@ -1,0 +1,52 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.TypInfo, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+
+  TDias = (Segunda, Terca, Quarta, Quinta, Sexta, Sabado, Domingo);
+  TMes = (Janeiro, Fevereiro, Marco, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro);
+
+  TEnumUtils<T> = class
+    class procedure EnumToList(Value: TStrings);
+  end;
+
+  TForm2 = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+{ TEnumUtils<T> }
+
+class procedure TEnumUtils<T>.EnumToList(Value: TStrings);
+
+var
+  Aux: String;
+  Pos, I: Integer;
+begin
+  Value.Clear;
+  I := 0;
+
+  repeat
+
+    Aux := GetEnumName(TypeInfo(T), I);
+    Pos := GetEnumValue(TypeInfo(T), Aux);
+    if Pos <> -1 then
+      Value.Add(Aux);
+
+  until Pos < 0;
+end;
+
+end.
